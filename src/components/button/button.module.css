@@ -1,0 +1,108 @@
+.base {
+  margin: 0;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+  border: none;
+}
+
+.base:focus {
+  box-shadow: 0 0 0 2px var(--ring-color, rgba(0, 0, 0, 0.1));
+}
+
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.primary {
+  background-color: rgb(59, 130, 246); /* blue-500 */
+  color: white;
+}
+
+.primary:hover:not(.disabled) {
+  background-color: rgb(37, 99, 235); /* blue-600 */
+}
+
+.primary:focus {
+  --ring-color: rgb(59, 130, 246);
+}
+
+.primary_1 {
+  background-color: #93f62885;
+  color: #395f10da;
+}
+
+.primary_1:hover:not(.disabled) {
+  background-color: #395f10da;
+  color: white;
+}
+
+.primary_1:focus {
+  --ring-color: rgb(182, 109, 130);
+}
+
+.secondary {
+  background-color: rgb(243, 244, 246); /* gray-100 */
+  color: rgb(55, 65, 81); /* gray-700 */
+  border: 1px solid rgb(209, 213, 219); /* gray-300 */
+}
+
+.secondary:hover:not(.disabled) {
+  background-color: rgb(229, 231, 235);
+}
+
+.secondary:focus {
+  --ring-color: rgb(209, 213, 219);
+}
+
+.danger {
+  color: rgb(239, 68, 68); /* red-500 */
+  border: 1px solid rgb(239, 68, 68);
+  background-color: transparent;
+}
+
+.danger:hover:not(.disabled) {
+  background-color: rgb(239, 68, 68);
+  color: white;
+}
+
+.danger:focus {
+  --ring-color: rgb(252, 165, 165); /* red-300 */
+}
+
+.info {
+  background-color: rgb(129, 140, 248); /* indigo-400 */
+  color: white;
+}
+
+.info:hover:not(.disabled) {
+  background-color: rgb(99, 102, 241); /* indigo-500 */
+}
+
+.info:focus {
+  --ring-color: rgb(165, 180, 252); /* indigo-300 */
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.125rem;
+}
+
+.iconOnly {
+  padding: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  gap: 0;
+}
