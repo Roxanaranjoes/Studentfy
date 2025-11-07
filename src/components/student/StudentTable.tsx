@@ -3,7 +3,6 @@
 import React from 'react';
 import { FiEdit2, FiTrash2, FiUsers } from 'react-icons/fi';
 import { Student } from '@/types/students';
-import { Badge } from '../badge/Badge';
 import { MiButton } from '../button/Button';
 import styles from './studentTable.module.css';
 
@@ -45,35 +44,19 @@ export const StudentTable: React.FC<StudentTableProps> = ({
         <thead className={styles.thead}>
           <tr>
             <th className={styles.th}>Nombre</th>
+            <th className={styles.th}>Apellido</th>
             <th className={styles.th}>Email</th>
-            <th className={styles.th}>Carrera</th>
-            <th className={styles.th}>Estado</th>
+            <th className={styles.th}>Edad</th>
             <th className={styles.th}>Acciones</th>
           </tr>
         </thead>
         <tbody className={styles.tbody}>
           {students.map((student) => (
             <tr key={student.id} className={styles.tr}>
-              <td className={styles.td}>
-                <div className={styles.nameCell}>
-                  <div className={styles.avatar}>
-                    {student.name.charAt(0).toUpperCase()}
-                  </div>
-                  <span className={styles.name}>{student.name}</span>
-                </div>
-              </td>
-              <td className={styles.td}>
-                <span className={styles.email}>{student.email}</span>
-              </td>
-              <td className={styles.td}>
-                <span className={styles.career}>{student.career}</span>
-              </td>
-              <td className={styles.td}>
-                <Badge
-                  text={student.status === 'active' ? 'Activo' : 'Inactivo'}
-                  color={student.status === 'active' ? 'green' : 'gray'}
-                />
-              </td>
+              <td className={styles.td}>{student.name}</td>
+              <td className={styles.td}>{student.lastName}</td>
+              <td className={styles.td}>{student.email}</td>
+              <td className={styles.td}>{student.age}</td>
               <td className={styles.td}>
                 <div className={styles.actions}>
                   <MiButton

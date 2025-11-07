@@ -1,25 +1,25 @@
  export interface Student {
   id: string;
   name: string;
+  lastName: string;
   email: string;
-  career: string;
-  status: 'active' | 'inactive';
-  createdAt?: string;
+  age: number;
 }
 
 export interface User {
+  id: string;
   email: string;
   role: 'admin' | 'user';
-  name?: string;
+  username: string;
+  password: string;
 }
-
 export interface CreateStudentDTO {
   name: string;
+  lastName: string;
   email: string;
-  career: string;
-  status: 'active' | 'inactive';
+  age: number;
 }
 
-export interface UpdateStudentDTO extends Partial<CreateStudentDTO> {
+export interface UpdateStudent extends Partial<CreateStudentDTO> {
   id: string;
 }

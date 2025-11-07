@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { FiX } from 'react-icons/fi';
-import { Student, CreateStudentDTO } from '@/types/students';
+import { Student, CreateStudentDTO} from '@/types/students';
 import { MiButton } from '../button/Button';
 import styles from './studentModal.module.css';
 
@@ -22,10 +22,10 @@ export const StudentModal: React.FC<StudentModalProps> = ({
   title = 'Agregar Estudiante',
 }) => {
   const [formData, setFormData] = useState<CreateStudentDTO>({
-    name: '',
-    email: '',
-    career: '',
-    status: 'active',
+      name: '',
+      lastName: '',
+      email: '',
+      age: 0,
   });
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -34,16 +34,16 @@ export const StudentModal: React.FC<StudentModalProps> = ({
     if (student) {
       setFormData({
         name: student.name,
+        lastName: student.lastName,
         email: student.email,
-        career: student.career,
-        status: student.status,
+        age: student.age,
       });
     } else {
       setFormData({
         name: '',
+        lastName: '',
         email: '',
-        career: '',
-        status: 'active',
+        age: 0,
       });
     }
     setErrors({});
@@ -62,8 +62,12 @@ export const StudentModal: React.FC<StudentModalProps> = ({
       newErrors.email = 'El email no es válido';
     }
 
-    if (!formData.career.trim()) {
-      newErrors.career = 'La carrera es requerida';
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = 'El apellido es requerido';
+    }
+
+    if (formData.age <= 0) {
+      newErrors.age = 'La edad debe ser un número positivo';
     }
 
     setErrors(newErrors);
@@ -134,53 +138,37 @@ export const StudentModal: React.FC<StudentModalProps> = ({
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor="email" className={styles.label}>
-              Correo electrónico *
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className={`${styles.input} ${errors.email ? styles.inputError : ''}`}
-              placeholder="Ej: maria@example.com"
-            />
-            {errors.email && <span className={styles.error}>{errors.email}</span>}
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="career" className={styles.label}>
-              Carrera *
+            <label htmlFor="lastName" className={styles.label}>
+              Apellido *
             </label>
             <input
               type="text"
-              id="career"
-              name="career"
-              value={formData.career}
+              id="lastName"
+              name="lastName"
+              value={formData.lastName}
               onChange={handleChange}
-              className={`${styles.input} ${errors.career ? styles.inputError : ''}`}
-              placeholder="Ej: Ingeniería en Sistemas"
+              className={`${styles.input} ${errors.lastName ? styles.inputError : ''}`}
+              placeholder="Ej: García"
             />
-            {errors.career && <span className={styles.error}>{errors.career}</span>}
+            {errors.lastName && <span className={styles.error}>{errors.lastName}</span>}
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor="status" className={styles.label}>
-              Estado *
+            <label htmlFor="age" className={styles.label}>
+              Edad *
             </label>
-            <select
-              id="status"
-              name="status"
-              value={formData.status}
+            <input
+              type="number"
+              id="age"
+              name="age"
+              value={formData.age}
               onChange={handleChange}
-              className={styles.input}
-            >
-              <option value="active">Activo</option>
-              <option value="inactive">Inactivo</option>
-            </select>
+              className={`${styles.input} ${errors.age ? styles.inputError : ''}`}
+              placeholder="Ej: 25"
+            />
+            {errors.age && <span className={styles.error}>{errors.age}</span>}
           </div>
-
+          
           <div className={styles.footer}>
             <MiButton
               variant="secondary"
